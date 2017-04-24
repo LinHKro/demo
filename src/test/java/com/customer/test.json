@@ -1,0 +1,93 @@
+[
+  {
+    "customer": {
+      "address": "321",
+      "age": 12,
+      "cardId": "100001",
+      "createTime": "2017-02-37",
+      "delFlag": 0,
+      "gender": "1",
+      "id": 1,
+      "mobile": "132",
+      "name": "张",
+      "photoUrl": "",
+      "signRecord": {
+        "customer": {
+          "$ref": ".."
+        },
+        "id": 1,
+        "signCount": 0,
+        "signDate": "2017-02-37",
+        "status": 0
+      },
+      "updateTime": "2017-02-37"
+    },
+    "id": 1,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 4,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 5,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 8,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 9,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 12,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 14,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 16,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  },
+  {
+    "customer": {
+      "$ref": "$[0].customer"
+    },
+    "id": 18,
+    "manager": "admin",
+    "signDate": "2017-02-37"
+  }
+]

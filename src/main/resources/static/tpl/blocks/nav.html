@@ -1,0 +1,23 @@
+<!-- customerList -->
+<ul class="nav">
+
+    <li class="line dk"></li>
+    <li ng-class="{active:$state.includes('app.form')}">
+        <a ui-sref="app.form.validation">
+            <span >新增会员</span>
+        </a>
+    </li>
+    <li ng-class="{active:$state.includes('app.table')}">
+        <a ui-sref="app.table.datatable">
+            <span>会员详情</span>
+        </a>
+    </li>
+    <li ng-class="{active:$state.includes('app.signHistory')}">
+        <a ui-sref="app.signHistory.table">
+            <span>签到记录</span>
+        </a>
+    </li>
+
+
+</ul>
+<!-- / customerList -->

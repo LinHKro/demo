@@ -1,0 +1,110 @@
+
+<div class="wrapper-md container">
+    <div ng-controller="CustomerCtl">
+        <div class="row ">
+            <div class="col-sm-6 ">
+                <div class="panel panel-default">
+                    <div class="bg-info wrapper-sm m-l-n m-r-n m-b r r-2x" style="width:32% ;">上传照片</div>
+                    <div class="wrapper-md" ng-controller="ImgCropCtrl">
+                        <div ng-controller="FileUploadCtrl" nv-file-drop=""
+                             uploader="uploader" filters="queueLimit, customFilter">
+                            <div class="hbox hbox-auto-xs">
+                                <div class="col">
+                                    <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+                                        <div class="bg-light" style="height:320px">
+                                            <img-crop
+                                                    image="myImage"
+                                                    result-image="myCroppedImage"
+                                                    result-image-size="160"
+                                                    area-type="{{cropType}}"
+                                            ></img-crop>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="inline bg-white wrapper-sm b-a">
+                                        <div class="bg-light">
+                                            <img ng-src="{{myCroppedImage}}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="btn-group m-t">
+                                 <label class="btn btn-default" ng-model="cropType" btn-radio="'circle'">Circle</label>
+                                 <label class="btn btn-default" ng-model="cropType" btn-radio="'square'">Square</label>
+                             </div>-->
+                            <div>
+                            </div>
+                            <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                            <div class="wrapper-md">
+                                <div class="m-b">
+                                    <input class="btn btn-default btn-addon" type="file" id="fileInput"
+                                           nv-file-select="" uploader="uploader"/>
+                                </div>
+                                <button type="button" class="btn m-b-xs w-xs btn-primary" ng-click="uploadAll()">上传照片
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <form name="form" class="form-validation">
+                    <div class="panel panel-default">
+                        <div class="bg-info wrapper-sm m-l-n m-r-n m-b r r-2x" style="width:32% ;">填写信息</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>姓名</label>
+                                <input type="text" class="form-control" placeholder="" ng-model="customer.name"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label>年龄</label>
+                                <input type="text" class="form-control" placeholder="" ng-model="customer.age"
+                                       required>
+                            </div>
+                            <!--<div class="form-group">
+                                <label>会员番号</label>
+                                <input type="text" class="form-control" ng-model="customer.cardId" required>
+                            </div>-->
+                            <div class="form-group">
+                                <div class="col-sm-6"><label>性别</label>
+                                    <ui-select ng-model="customer.gender" theme="bootstrap">
+                                        <ui-select-match placeholder="请选择">{{$select.selected.key}}</ui-select-match>
+                                        <ui-select-choices repeat="item in gender | filter: $select.search">
+                                            <div ng-bind-html="item.key | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-6"><label>会员类别</label>
+                                    <ui-select ng-model="customer.flag" theme="bootstrap">
+                                        <ui-select-match placeholder="请选择">{{$select.selected.key}}</ui-select-match>
+                                        <ui-select-choices repeat="item in customerFlag | filter: $select.search">
+                                            <div ng-bind-html="item.key | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>手机</label>
+                                <input type="text" class="form-control" placeholder=""
+                                       ng-model="customer.mobile" required>
+                            </div>
+                            <div class="form-group">
+                                <label>地址</label>
+                                <input type="text" class="form-control" ng-model="customer.address" required>
+                            </div>
+                            <div class="form-group">
+                                <label>备注</label>
+                                <input type="text" class="form-control" ng-model="customer.remark" required>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-right bg-light lter">
+                            <button type="button" ng-click="save()" class="btn btn-success">提交</button>
+                        </footer>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

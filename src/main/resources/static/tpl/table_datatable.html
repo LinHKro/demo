@@ -1,0 +1,68 @@
+
+<div class="wrapper-md" ng-controller="CustomerListCtrl">
+    <div class="panel wrapper-sm">
+        <div class="bg-info wrapper-sm m-l-n m-r-n m-b r r-2x" style="width:16.66666667% ;">会员签到</div>
+        <div class="col-sm-2">
+            <ui-select ng-model="signCardId.id" theme="bootstrap">
+                <ui-select-match placeholder="输入会员番号点击签到...">{{$select.selected.cardId}}</ui-select-match>
+                <ui-select-choices repeat="item in customerList | filter: $select.search">
+                    <div ng-bind-html="item.cardId | highlight: $select.search"></div>
+                    <small ng-bind-html="item.name | highlight: $select.search"></small>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <button class="btn m-b-xs w-xs btn-info" ng-click="customerSign(signCardId.id.cardId,signCardId.id)">签到</button>
+    </div>
+    <br>
+    <div class="panel wrapper-sm">
+        <div class="bg-info wrapper-sm m-l-n m-r-n m-b r r-2x" style="width:16.66666667% ;">会员情报</div>
+        <div class="table-responsive">
+            <div class="panel-body b-b b-light">
+                查询: <input id="filter" ng-model="searchStr" type="text" class="form-control input-sm w-sm inline m-r"/>
+            </div>
+            <table class="table table-striped m-b-none">
+                <thead>
+                <tr>
+                    <th ng-class="{dropup:sta}">
+                        姓名 <span class="caret" ng-click="changeStatus('name')"></span>
+                    </th>
+                    <th ng-class="{dropup:!sta}">
+                        会员番号 <span class="caret" ng-click="changeStatus('cardId')"></span>
+                    </th>
+                    <th>地址</th>
+                    <th>手机</th>
+                    <th>签到</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="customer in customerList | filter:searchStr | orderBy: order+orderByProperty | paging:page.index:page.size">
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.cardId}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>{{customer.mobile}}</td>
+                    <td>{{customer.signRecord.status}}</td>
+                    <td>{{customer.remark}}</td>
+                    <td>
+                        <button class="btn m-b-xxs w-xxs btn-success btn-rounded"
+                                ng-click="customerSign(customer.cardId,customer)">签到
+                        </button>
+                        <button class="btn m-b-xxs w-xxs btn-info btn-rounded"
+                                ng-click="customerDetail(customer.id)">详情
+                        </button>
+                        <button class="btn m-b-xxs w-xxs btn-danger btn-rounded"
+                                ng-click="customerDel(customer.id)">删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="m-xs">
+                <pagination total-items="customerList | filter:searchStr | size" ng-model="page.index" max-size="5"
+                            class="pagination-sm m-t-none m-b " boundary-links="true" rotate="false"
+                            items-per-page="page.size"></pagination>
+            </div>
+
+        </div>
+    </div>
+</div>

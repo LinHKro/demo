@@ -1,0 +1,58 @@
+<div class="wrapper-md" ng-controller="signHistoryCtrl">
+    <div class="panel wrapper-sm">
+        <div class="bg-info wrapper-sm m-l-n m-r-n m-b r r-2x" style="width:16.66666667% ;">签到记录</div>
+        <div class="panel-body b-b b-light">
+            <div class="col-sm-2">
+                <ui-select ng-model="signCardId.id" theme="bootstrap">
+                    <ui-select-match placeholder="输入会员番号...">{{$select.selected.cardId}}</ui-select-match>
+                    <ui-select-choices repeat="item in customerList | filter: $select.search">
+                        <div ng-bind-html="item.cardId | highlight: $select.search"></div>
+                        <small ng-bind-html="item.name | highlight: $select.search"></small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <button class="btn m-b-xs w-s btn-info" ng-click="findHistoryById(signCardId.id.cardId)">会员番号查询</button>
+        </div>
+        <div class="panel-body b-b b-light">
+            <div class="form-group m-l">
+                <div class="input-group col-sm-3 ">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt"
+                           is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                    </span>&nbsp;
+                    <span class="input-group-btn ">
+                        <button class="btn m-b-xs w-s btn-info " ng-click="findHistoryByDate(dt)">签到日期查询</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped m-b-none">
+                <thead>
+                <tr>
+                    <th ng-class="{dropup:sta}">
+                        姓名 <span class="caret" ng-click="changeStatus('name')"></span>
+                    </th>
+                    <th ng-class="{dropup:!sta}">
+                        会员番号 <span class="caret" ng-click="changeStatus('cardId')"></span>
+                    </th>
+                    <th>签到时间</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="item in signList | orderBy: '-'+signDate | paging:page.index:page.size">
+                    <td>{{item.customer.name}}</td>
+                    <td>{{item.customer.cardId}}</td>
+                    <td>{{item.signDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="m-xs">
+                <pagination total-items="signList | size" ng-model="page.index" max-size="5"
+                            class="pagination-sm m-t-none m-b " boundary-links="true" rotate="false"
+                            items-per-page="page.size"></pagination>
+            </div>
+        </div>
+    </div>
+</div>

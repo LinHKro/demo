@@ -1,0 +1,52 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">会员信息</h1>
+</div>
+<div class="wrapper-md" ng-controller="CustomerListCtrl">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+            <div class="panel-body b-b b-light">
+                查询: <input id="filter" ng-model="searchStr" type="text" class="form-control input-sm w-sm inline m-r"/>
+            </div>
+            <table class="table table-striped m-b-none">
+                <thead>
+                <tr>
+                    <th ng-class="{dropup:sta}">
+                        姓名 <span class="caret" ng-click="changeStatus('name')"></span>
+                    </th>
+                    <th ng-class="{dropup:!sta}">
+                        会员番号 <span class="caret" ng-click="changeStatus('cardId')"></span>
+                    </th>
+                    <th>地址</th>
+                    <th>手机</th>
+                    <th>签到</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="customer in customerList | filter:searchStr | orderBy: order+orderByProperty">
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.cardId}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>{{customer.mobile}}</td>
+                    <td>{{customer.signRecord.status}}</td>
+                    <td>{{customer.remark}}</td>
+                    <td>
+                        <button class="btn m-b-xxs w-xxs btn-success btn-rounded"
+                                ng-click="customerSign({{customer.id}})">签到
+                        </button>
+                        <button class="btn m-b-xxs w-xxs btn-info btn-rounded"
+                                ng-click="customerDetail({{customer.id}})">详情
+                        </button>
+                        <button class="btn m-b-xxs w-xxs btn-danger btn-rounded"
+                                ng-click="customerDel({{customer.id}})">删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm m-t-none m-b" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+
+        </div>
+    </div>
+</div>
